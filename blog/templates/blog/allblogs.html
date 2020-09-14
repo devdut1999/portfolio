@@ -1,16 +1,15 @@
 <!doctype html>
 <html lang="en">
   <head>
-    {% load staticfiles  %}
+    {% load staticfiles %}
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
     
+    <title>Blogs @ Dev</title>
 
-    <title>Dev's Portfolio</title>
-
-    <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/album/">
+  
 
     <!-- Bootstrap core CSS -->
    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
@@ -37,45 +36,19 @@
     </header>
 
     <main role="main">
-
-      <section class="jumbotron text-center" style="background-color: rgb(242, 220, 247)">
-        <div class="container"> 
-          <h1 class="jumbotron-heading">Hi I'm Dev!</h1>
-          <p class="lead text-muted "><h3>My name is Devadutta Dash .I am from Bhubaneswar,Odisha.I am currently pusuing B.Tech Computer Science at IIT-BHU!</h3></p>
-          <p>
-            <a href="mailto:dashdevadutta@gmail.com" class="btn btn-primary my-2">Email me</a>
-          </p>
-          <img src="{%static 'dev1.jpg' %}" height="450">
-        </div>
+      <div class="container">
+        <h1 class = "text-center pt-3">Welcome to Dev's Blog</h1><br>
         <br>
-        <div>
-          <img src="{% static 'IIT BHU.webp' %}" height="350">
-          <br>
-          <h4>CSE Sophomore @ IIT BHU</h4>
-
-        </div>
-      </section>
-
-      <div class="album py-5 " style = "background-color: rgb(208, 247, 239)">
-        <div class="container">
-
-          <div class="row">
-
-
-            {% for job in jobs.all %}
-              <div class="col-md-4">
-                <div class="card mb-4 box-shadow">
-                  <img class = "img-fluid" src="{{ job.image.url }}" />
-                  <div class="card-body">
-                    <p class="card-text">{{job.summary}}</p>
-                  </div>
-                </div>
-              </div>
-            {% endfor %}
-
-
-          </div>
-        </div>
+        <h2>Latest Posts</h2>
+        <hr>
+        {% for blog in blogs.all %}
+        <a href="{% url 'detail' blog.id %} "><h3>{{blog.title}}</h3></a>
+        {{blog.pub_date_pretty}}
+        <br>
+        <a href="{% url 'detail' blog.id %} "><img class = "img-fluid" src="{{blog.image.url}}" height="300" width="300"/></a>
+        <br>
+        <p>{{blog.summary}}...</p>
+        {% endfor %}
       </div>
     </main>
 
